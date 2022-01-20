@@ -2,8 +2,35 @@
 {% block content %}
 
 <div class="card p-3 m-2">
-    <h1>Iboprofaxe</h1>
+    <h1>The last irrigation was at: </h1>
 </div>
-
-
+<link rel="stylesheet" href="{{ url_for('static', filename='/main.css') }}">
+<div class="wrapper">
+    <div class="left box">
+      Box 1
+    </div>
+    <div class="right wrapper">
+    <div class="cardkpi">
+        <div class="card-headerkpi">Average Usage</div>
+        <div class="card-mainkpi">
+          <img src="https://www.fortuna-gronau.de/wp-content/uploads/2017/02/durchschnitt.gif" class="material-iconskpi">
+          <div class="main-descriptionkpi">50</div>
+        </div>
+    </div>
+    <div class="cardkpi">
+        <div class="card-headerkpi">Liter-Left</div>
+        <div class="card-mainkpi">
+            <img src="https://static.vecteezy.com/ti/gratis-vektor/p1/353897-eimer-symbol-kostenlos-vektor.jpg" class="material-iconskpi">
+            <div class="main-descriptionkpi">1L</div>
+        </div>
+    </div>
+    <div class="cardkpi">
+        <div class="card-headerkpi">Humidity</div>
+        <div class="card-mainkpi">
+            <img src="https://cdn-icons-png.flaticon.com/512/63/63123.png" class="material-iconskpi">
+            <div class="main-descriptionkpi">70%</div>
+        </div>
+    </div>
+</div>
+  
 {% endblock %}

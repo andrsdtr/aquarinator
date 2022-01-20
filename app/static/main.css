@@ -1,0 +1,106 @@
+.wrapper {
+    display: flex; /* Magic begins */
+  }
+  .left, .right {
+    flex: 1; /* Distribute width equally */
+  }
+  .right {
+    flex-wrap: wrap; /* Allow multiple lines */
+  }
+  .box {
+    display: flex;
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    width: calc(50% - 4px);
+    margin: 1rem;
+    background: rgb(28, 111, 122);
+    color: black;
+  }
+
+.kpi {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 180px;
+    width: 320px;
+    margin: 1rem;
+    margin: 1rem;
+    margin-bottom: 0,95rem;
+    padding: 1rem 1.5rem;
+    border: 2px solid black;
+    border-radius: 15px;
+    text-align: center;
+    background-color: whitesmoke;
+  }
+
+.kpi__value {
+    margin-top: 2rem;
+    margin-bottom: .75rem;
+    font-size: 2.5rem;
+    line-height: 1;
+}
+  
+.kpi__description {
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+.card-main {
+    display: flex;              /* Children use Flexbox */
+    flex-direction: column;     /* Rotate Axis to Vertical */
+    justify-content: center;    /* Group Children in Center */
+    align-items: center;        /* Group Children in Center (+axis) */
+    padding: 15px 0;
+    margin: 1rem;
+    /* Add padding to the top/bottom */
+}
+
+
+  
+.cardkpi{
+    height: 180px;
+    width: 320px;               /* Set width of cards */
+    display: flex;                /* Children use Flexbox */
+    flex-direction: column;       /* Rotate Axis */
+    border: 3px solid black;    /* Set up Border */
+    border-radius: 15px;           /* Slightly Curve edges */
+    overflow: hidden; 
+    margin: 0.6rem;
+    background-color: white;
+}
+  
+.card-headerkpi {
+    color: black;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    border-bottom: 3px solid black;
+    background-color: white;
+    padding: 5px 10px;
+}
+  
+.card-mainkpi {
+    display: flex;              /* Children use Flexbox */
+    flex-direction: column;     /* Rotate Axis to Vertical */
+    justify-content: center;    /* Group Children in Center */
+    align-items: center;        /* Group Children in Center (on cross axis) */
+    padding: 15px 0;            /* Add padding to the top/bottom */
+}
+  
+.material-iconskpi {
+    margin-top: 1rem;
+    height: 60px;
+    width: 60px;  
+    font-size: 36px;
+    color: black;
+    margin-bottom: 5px;
+}
+  
+.main-descriptionkpi {
+    margin-top: 0.6rem;
+    margin-left: 0.39rem;
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+}
