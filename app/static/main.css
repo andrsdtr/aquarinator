@@ -9,8 +9,8 @@
   }
   .box {
     display: flex;
-    align-items: center; /* Center content vertically */
-    justify-content: center; /* Center content horizontally */
+    align-items: center; 
+    justify-content: center; 
     width: calc(50% - 4px);
     margin: 1rem;
     background: rgb(28, 111, 122);
@@ -19,11 +19,11 @@
 
 .cardkpi{
     height: 180px;
-    width: 320px;               /* Set width of cards */
-    display: flex;                /* Children use Flexbox */
-    flex-direction: column;       /* Rotate Axis */
-    border: 3px solid black;    /* Set up Border */
-    border-radius: 15px;           /* Slightly Curve edges */
+    width: 320px;               
+    display: flex;                
+    flex-direction: column;       
+    border: 3px solid black;    
+    border-radius: 15px;           
     overflow: hidden; 
     margin: 0.6rem;
     background-color: white;
@@ -90,4 +90,44 @@
 
 .button:active {
   border: 5px solid black;   
+}
+
+
+.new-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.new-table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.new-table th,
+.new-table td {
+  padding: 12px 15px;
+}
+
+.new-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.new-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.new-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+.new-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
 }

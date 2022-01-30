@@ -1,33 +1,60 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="card p-3 m-2">
-    <h1>Advanced Iboprofaxe</h1>
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Date/Time</th>
-            <th scope="col">Humidity</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>17.01.2022//17:30</td>
-            <td>70%</td>
-          </tr>
-          <tr>
-            <td>17.01.2022//18:00</td>
-            <td>50%</td>
-          </tr>
-          <tr>
-            <td>17.01.2022//18:30</td>
-            <td>40%</td>
-          </tr>
-        </tbody>
-      </table>
-    <div class="card container-fluid">
-        <h1 class="">Das isses</h1>
-    </div>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" ></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='/main.css') }}">
+
+</head>
+<body>
+<div class="container">
+    <h2>The last irrigation was at:</h2>    
+    <table class="new-table" id="myTable">
+    <thead>
+    <tr><th>Date</th><th>Humidity</th><th>Liters Left</th></tr>
+    </thead>
+    <tbody>
+    <tr><td type="date">2022/01/28</td><td>50%</td><td>10</td></tr>
+    <tr><td type="date">2022/05/12</td><td>70%</td><td>8</td></tr>
+    <tr><td type="date">2001/11/30</td><td>30%</td><td>0</td></tr>
+    <tr><td type="date">1974/12/21</td><td>20%</td><td>5</td></tr>
+    <tr><td type="date">2022/01/28</td><td>50%</td><td>10</td></tr>
+    <tr><td type="date">2022/05/12</td><td>70%</td><td>8</td></tr>
+    <tr><td type="date">2001/11/30</td><td>30%</td><td>0</td></tr>
+    <tr><td type="date">1974/12/21</td><td>20%</td><td>5</td></tr>
+    <tr><td type="date">2022/01/28</td><td>50%</td><td>10</td></tr>
+    <tr><td type="date">2022/05/12</td><td>70%</td><td>8</td></tr>
+    <tr><td type="date">2001/11/30</td><td>30%</td><td>0</td></tr>
+    <tr><td type="date">1974/12/21</td><td>20%</td><td>5</td></tr>
+    <tr><td type="date">2022/05/12</td><td>70%</td><td>8</td></tr>
+    <tr><td type="date">2001/11/30</td><td>30%</td><td>0</td></tr>
+    <tr><td type="date">1974/12/21</td><td>20%</td><td>5</td></tr>
+    <tr><td type="date">2022/01/28</td><td>50%</td><td>10</td></tr>
+    <tr><td type="date">2022/05/12</td><td>70%</td><td>8</td></tr>
+    <tr><td type="date">2001/11/30</td><td>30%</td><td>0</td></tr>
+    <tr><td type="date">1974/12/21</td><td>20%</td><td>5</td></tr>
+    <tr><td type="date">2022/05/12</td><td>70%</td><td>8</td></tr>
+    <tr><td type="date">2001/11/30</td><td>30%</td><td>0</td></tr>
+    <tr><td type="date">1974/12/21</td><td>20%</td><td>5</td></tr>
+    <tr><td type="date">2022/01/28</td><td>50%</td><td>10</td></tr>
+    <tr><td type="date">2022/05/12</td><td>70%</td><td>8</td></tr>
+    <tr><td type="date">2001/11/30</td><td>30%</td><td>0</td></tr>
+    <tr><td type="date">1974/12/21</td><td>20%</td><td>5</td></tr>
+    </tbody>
+    </table>
 </div>
 
+<script>
+    $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+    </script>
+</body>
 {% endblock %}
