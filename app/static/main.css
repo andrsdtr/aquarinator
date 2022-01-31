@@ -44,7 +44,7 @@
     flex-direction: column;     
     justify-content: center;    
     align-items: center;        
-    padding: 15px 0;            /* Add padding to the top/bottom */
+    padding: 15px 0;          
 }
   
 .material-iconskpi {
@@ -130,4 +130,58 @@
 .new-table tbody tr.active-row {
   font-weight: bold;
   color: #009879;
+}
+
+.container h2{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.config-container {
+  display: inline-flex;
+  width: 100%;
+  text-align: center;
+  
+}
+
+.config-container div {
+  border-radius: 5px;
+  width: 700px;
+  border: 2px solid black;
+  height: 250px;
+  margin: 2.9rem ;
+  background-color: white;
+
+}
+
+.config-container h3 {
+  font-size: 30px;
+  color: white;
+  background-color: #009879;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 0 auto;
+  border-bottom: 2px solid black;
+  margin-bottom: 3.5rem;
+}
+
+.config-container div input {
+  margin-top: 6em;
+  margin-bottom: 7em;
+  margin: 1rem;
+}
+
+.config-container div a {
+  color: white;
+  background-color: #009879;
+  padding: 12px 55px;
+  border-radius: 5px;
+  width: 80px;
+  text-decoration: none;
+}
+
+.config-container div a:hover {
+  background-color: #62c7b3;
+  transition: ease .25s;
+  color: white;
 }
