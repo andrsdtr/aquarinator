@@ -20,6 +20,12 @@ firebase = pyrebase.initialize_app(config)
 
 db = firebase.database()
 
+def add_measurement(moisture): 
+    timestamp = str(datetime.now())
+    key = re.sub('\.|\-|\:|\ ', '', timestamp)
+    data = {'timestemp': timestamp, 'moisture': moisture}
+    db.child('moisture_mesurements').child(key).set(data)
+
 def add_db_entry(): 
     timestamp = str(datetime.now())
     key = re.sub('\.|\-|\:|\ ', '', timestamp)
