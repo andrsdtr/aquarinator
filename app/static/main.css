@@ -9,12 +9,11 @@
   }
   .box {
     display: flex;
-    align-items: center; 
-    justify-content: center; 
     width: calc(50% - 4px);
     margin: 1rem;
-    background: rgb(28, 111, 122);
-    color: white;
+    background: rgb(255, 255, 255);
+    border: 3px solid black;    
+    border-radius: 15px; 
 }
 
 .cardkpi{

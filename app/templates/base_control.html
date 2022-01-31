@@ -5,9 +5,28 @@
     <h1>The last irrigation was at: </h1>
 </div>
 <link rel="stylesheet" href="{{ url_for('static', filename='/main.css') }}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <div class="wrapper">
     <div class="left box">
-      Box 1
+        <canvas id="lineChart"></canvas>
+        <script>
+            var ctx = document.getElementById("lineChart").getContext("2d");
+            var lineChart = new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: {{ labels | safe }},
+                    datasets: [
+                        {
+                            label: "Moisture Mesurements",
+                            data: {{ values | safe}},
+                            fill: false,
+                            borderColor: "rgb(0,152,121)",
+                            lineTension: 0.1
+                        }
+                    ]
+                }
+            });
+        </script>
     </div>
     <div class="right wrapper">
     <div class="cardkpi">
@@ -31,13 +50,16 @@
             <div class="main-descriptionkpi">70%</div>
         </div>
     </div>
-    <button class="button">
-        <div class="card-mainkpi">
-            <img src="https://library.kissclipart.com/20180901/ouw/kissclipart-watering-can-icon-clipart-watering-cans-computer-i-a498c0881b078b51.png" class="material-iconbutton">
-            <div class="main-descriptionkpi">Press here to water!</div>
-        </div>
-    </button>
+    <form action = "{{ url_for('base_control')}}" method="POST" enctype = "multipart/form-data">
+        <button class="button">
+            <div class="card-mainkpi">
+                <img src="https://library.kissclipart.com/20180901/ouw/kissclipart-watering-can-icon-clipart-watering-cans-computer-i-a498c0881b078b51.png" class="material-iconbutton">
+                <div class="main-descriptionkpi">Press here to water!</div>
+            </div>
+        </button>
+    </form>
     </div>
+    <p>{{ test}}</p>
 </div>
 
 {% endblock %}
