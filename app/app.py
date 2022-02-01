@@ -27,13 +27,6 @@ def add_measurement(moisture):
     data = {'timestemp': timestamp, 'moisture': moisture}
     db.child('moisture_mesurements').child(key).set(data)
 
-def add_db_entry(): 
-    timestamp = str(datetime.now())[11:-10]
-    key = re.sub('\.|\-|\:|\ ', '', str(datetime.now()))
-    moisture = 0.5
-    data = {'timestemp': timestamp, 'moisture': moisture}
-    db.child('moisture_mesurements').child(key).set(data)
-
 def get_labels_values(data):
     labels = []
     values = []
@@ -65,19 +58,25 @@ def get_labels_values(data):
 def base_control():
     data = db.child('moisture_mesurements').get()
     labels, values = get_labels_values(data)
-    humidity = values[-1]
+    if len(values) > 0 :
+        humidity = str(int(values[-1]*100))+ '%'
+    elif len(values) == 0:
+        humidity = 'no measurement yet...'
+    
     print(type(data))
     if request.method == 'POST':
         i = 29
-        while i > 0: 
-            add_measurement(randrange(10)/10)
-            i-=1
-        add_db_entry()
+        # adding random values to db:
+
+        #while i > 0: 
+        #    add_measurement(randrange(10)/10)
+        #    i-=1
+        
         # Hier bewässerungsfunktion einfügen
     return render_template('base_control.html',
                             labels = labels,
                             values = values,
-                            humidity = str(int(humidity*100))+ '%')
+                            humidity = humidity)
 
 @app.route('/advanced')
 def advanced():
