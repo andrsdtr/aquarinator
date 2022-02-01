@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='/main.css') }}">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <div class="contbase">
-    <graph class="graph">
+    <main>
         <canvas id="lineChart"></canvas>
         <script>
             var ctx = document.getElementById("lineChart").getContext("2d");
@@ -42,7 +42,7 @@
             }
         });
         </script>
-    </graph>    
+    </main>    
     <div class="kpi1">
         <div class="cardkpi">
             <div class="card-headerkpi">Average Usage</div>

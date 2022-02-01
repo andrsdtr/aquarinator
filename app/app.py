@@ -24,7 +24,7 @@ db = firebase.database()
 def add_measurement(moisture): 
     timestamp = str(datetime.now())[11:-10]
     key = re.sub('\.|\-|\:|\ ', '', str(datetime.now()))
-    data = {'timestemp': timestamp, 'moisture': moisture}
+    data = {'timestamp': timestamp, 'moisture': moisture}
     db.child('moisture_mesurements').child(key).set(data)
 
 def get_labels_values(data):
@@ -40,7 +40,7 @@ def get_labels_values(data):
         i = len(pro_data)
         j = 0
         while i > 0:
-            labels.append(pro_data[j]['timestemp'])
+            labels.append(pro_data[j]['timestamp'])
             values.append(pro_data[j]['moisture'])
             i-=1
             j+=1
@@ -48,7 +48,7 @@ def get_labels_values(data):
         i = 30
         j = len(pro_data) - 30
         while i > 0:
-            labels.append(pro_data[j]['timestemp'])
+            labels.append(pro_data[j]['timestamp'])
             values.append(pro_data[j]['moisture'])
             i-=1
             j+=1
