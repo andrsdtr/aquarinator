@@ -1,3 +1,21 @@
+.wrapper {
+    display: flex; 
+  }
+  .left, .right {
+    flex: 1; 
+  }
+  .right {
+    flex-wrap: wrap; 
+  }
+  .box {
+    display: flex;
+    width: calc(50% - 4px);
+    margin: 1rem;
+    background: rgb(255, 255, 255);
+    border: 3px solid black;    
+    border-radius: 15px; 
+}
+
 .cardkpi{
     height: 180px;
     width: 320px;               
@@ -167,71 +185,26 @@
   color: white;
 }
 
-:root {
-  --main-radius: 5px;
-  --main-padding: 5px;
-}
+@media only screen and (max-width: 500px) {
+  .wrapper {
+    display: grid; 
+    width: auto;
+  }
 
-.contbase {
-  display: grid;
-  height: 100vh;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 0.2fr 1.5fr 1.2fr 0.8fr;
-  grid-template-areas:
-    "main main main main"
-    "kpi1 kpi2 kpi3 kpi4";
-  grid-gap: 0.2rem;
-  text-transform: uppercase;
-  font-size: 12px;
-  text-align: center;
-}
+  .cardkpi{
+    width: auto;
 
-main {
-  grid-area: main;
-  border-radius: var(--main-radius);
-  padding-top: var(--main-padding);
-  margin: 1rem;
-  background: rgb(255, 255, 255);
-  border: 3px solid black;    
-  border-radius: 15px; 
-  width: 50%;
-}
+  }
+  .left {
+    width: auto;
+  }
+  .box {
+    display: grid
+  }
 
-.kpi1 {
-  grid-area: kpi1;
-  border-radius: var(--main-radius);
-  padding-top: var(--main-padding);
-}
-
-.kpi2 {
-  grid-area: kpi2;
-  border-radius: var(--main-radius);
-  padding-top: var(--main-padding);
-}
-
-#kpi3 {
-  grid-area: kpi3;
-  border-radius: var(--main-radius);
-  padding-top: var(--main-padding);
-}
-
-#kpi4 {
-  grid-area: kpi4;
-  border-radius: var(--main-radius);
-  padding-top: var(--main-padding);
-}
-
-
-@media only screen and (max-width: 550px) {
-  .graph {
-    grid-template-columns: 1fr;
-    grid-template-rows: 0.4fr 0.4fr 2.2fr 1.2fr 1.2fr 1.2fr 1fr;
-    grid-template-areas:
-      "main"
-      "kpi1"
-      "kpi2"
-      "kpi3"
-      "kpi4"
+  .button{
+    display: grid;
+    width: 95%; 
   }
 }
 

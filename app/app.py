@@ -40,7 +40,7 @@ def get_labels_values(data):
         i = len(pro_data)
         j = 0
         while i > 0:
-            labels.append(pro_data[j]['timestamp'])
+            labels.append(pro_data[j]['time'])
             values.append(pro_data[j]['moisture'])
             i-=1
             j+=1
@@ -48,7 +48,7 @@ def get_labels_values(data):
         i = 30
         j = len(pro_data) - 30
         while i > 0:
-            labels.append(pro_data[j]['timestamp'])
+            labels.append(pro_data[j]['time'])
             values.append(pro_data[j]['moisture'])
             i-=1
             j+=1

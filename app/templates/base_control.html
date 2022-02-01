@@ -6,8 +6,8 @@
 </div>
 <link rel="stylesheet" href="{{ url_for('static', filename='/main.css') }}">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-<div class="contbase">
-    <main>
+<div class="wrapper">
+    <div class="left box">
         <canvas id="lineChart"></canvas>
         <script>
             var ctx = document.getElementById("lineChart").getContext("2d");
@@ -42,8 +42,8 @@
             }
         });
         </script>
-    </main>    
-    <div class="kpi1">
+    </div>    
+    <div id="right wrapper">
         <div class="cardkpi">
             <div class="card-headerkpi">Average Usage</div>
             <div class="card-mainkpi">
@@ -52,8 +52,6 @@
                 <div class="main-descriptionkpi">50</div>
             </div>
         </div>
-    </div>
-    <div class="kpi2">
         <div class="cardkpi">
             <div class="card-headerkpi">Liter-Left</div>
             <div class="card-mainkpi">
@@ -62,8 +60,6 @@
                 <div class="main-descriptionkpi">1L</div>
             </div>
         </div>
-    </div>
-    <div id="kpi3">
         <div class="cardkpi">
             <div class="card-headerkpi">Humidity</div>
             <div class="card-mainkpi">
@@ -71,8 +67,6 @@
                 <div class="main-descriptionkpi">{{ humidity }}</div>
             </div>
         </div>
-    </div>
-    <div id="kpi4">
         <form action="{{ url_for('base_control')}}" method="POST" enctype="multipart/form-data">
             <button class="button">
                 <div class="card-mainkpi">
