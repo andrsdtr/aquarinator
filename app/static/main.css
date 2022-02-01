@@ -184,3 +184,80 @@
   transition: ease .25s;
   color: white;
 }
+
+:root {
+  --main-radius: 5px;
+  --main-padding: 5px;
+}
+
+.contbase {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 0.2fr 1.5fr 1.2fr 0.8fr;
+  grid-template-areas:
+    "nav nav nav nav"
+    "graph graph graph graph"
+    "kpi1 kpi2 kpi3 kpi4";
+  grid-gap: 0.2rem;
+  text-transform: uppercase;
+  font-size: 12px;
+  text-align: center;
+}
+
+.graph {
+  grid-area: graph;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+  margin: 1rem;
+  background: rgb(255, 255, 255);
+  border: 3px solid black;    
+  border-radius: 15px; 
+}
+
+footer {
+  background: white;
+  grid-area: footer;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+}
+
+.kpi1 {
+  grid-area: kpi1;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+}
+
+.kpi2 {
+  grid-area: kpi2;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+}
+
+#kpi3 {
+  grid-area: kpi3;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+}
+
+#kpi4 {
+  grid-area: kpi4;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+}
+
+
+@media only screen and (max-width: 550px) {
+  .graph {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.4fr 0.4fr 2.2fr 1.2fr 1.2fr 1.2fr 1fr;
+    grid-template-areas:
+      "graph"
+      "kpi1"
+      "kpi2"
+      "kpi3"
+      "kpi4"
+      "footer"
+  }
+}
+
