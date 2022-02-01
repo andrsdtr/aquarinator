@@ -24,7 +24,22 @@
                             lineTension: 0.1
                         }
                     ]
-                }
+                },
+                options: {
+                        scales: {    
+                            yAxes: [
+                                {
+                                    ticks: {
+                                        callback: function(tick) {
+                                            return (tick*100).toString() + '%';
+                                        },
+                                        beginAtZero: true,
+                                        max: 1
+                                    }
+                                }
+                            ]
+                        }
+                    }
             });
         </script>
     </div>
@@ -47,7 +62,7 @@
         <div class="card-headerkpi">Humidity</div>
         <div class="card-mainkpi">
             <img src="https://cdn-icons-png.flaticon.com/512/63/63123.png" class="material-iconskpi">
-            <div class="main-descriptionkpi">70%</div>
+            <div class="main-descriptionkpi">{{ humidity }}</div>
         </div>
     </div>
     <form action = "{{ url_for('base_control')}}" method="POST" enctype = "multipart/form-data">
@@ -59,7 +74,6 @@
         </button>
     </form>
     </div>
-    <p>{{ test}}</p>
 </div>
 
 {% endblock %}

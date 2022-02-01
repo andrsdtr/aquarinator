@@ -1,4 +1,5 @@
 from numpy import empty
+from random import randrange
 from flask import Flask, render_template, request
 import pyrebase, re
 from datetime import datetime
@@ -21,15 +22,15 @@ firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 
 def add_measurement(moisture): 
-    timestamp = str(datetime.now())
-    key = re.sub('\.|\-|\:|\ ', '', timestamp)
+    timestamp = str(datetime.now())[11:-10]
+    key = re.sub('\.|\-|\:|\ ', '', str(datetime.now()))
     data = {'timestemp': timestamp, 'moisture': moisture}
     db.child('moisture_mesurements').child(key).set(data)
 
 def add_db_entry(): 
-    timestamp = str(datetime.now())
-    key = re.sub('\.|\-|\:|\ ', '', timestamp)
-    moisture = '5%'
+    timestamp = str(datetime.now())[11:-10]
+    key = re.sub('\.|\-|\:|\ ', '', str(datetime.now()))
+    moisture = 0.5
     data = {'timestemp': timestamp, 'moisture': moisture}
     db.child('moisture_mesurements').child(key).set(data)
 
@@ -37,8 +38,7 @@ def get_labels_values(data):
     labels = []
     values = []
     pro_data = []
-    print(type(data))
-    if data is None:
+    if data.val() is None:
         return [],[]
 
     for i in data.each():
@@ -63,25 +63,21 @@ def get_labels_values(data):
 
 @app.route('/', methods = ['GET', 'POST'])
 def base_control():
-    test = ''
-    labels = ['' , '20:00', '19:30', '20:00', '19:30', '20:00','19:30', '20:00','19:30', '20:00','19:30', '20:00', '19:30', '20:00', '19:30', '20:00','19:30', '20:00','19:30', '20:00','19:30', '20:00', '19:30', '20:00', '19:30', '20:00','19:30', '20:00','19:30', '20:00',]
-    values = [2, 3, 1, 4, 2, 2, 3, 1, 4, 2, 2, 3, 1, 4, 2, 2, 3, 1, 4, 2, 2, 3, 1, 4, 2, 2, 3, 1, 4, 2,]
-    
     data = db.child('moisture_mesurements').get()
-    #labels, values = get_labels_values(data)
+    labels, values = get_labels_values(data)
+    humidity = values[-1]
     print(type(data))
     if request.method == 'POST':
         i = 29
-        #while i > 0: 
-        #    add_db_entry()
-        #    i-=1
+        while i > 0: 
+            add_measurement(randrange(10)/10)
+            i-=1
         add_db_entry()
-        test1 = db.child('moisture_mesurements').get()
-        print(type(test1))
+        # Hier bewässerungsfunktion einfügen
     return render_template('base_control.html',
                             labels = labels,
                             values = values,
-                            test = test)
+                            humidity = str(int(humidity*100))+ '%')
 
 @app.route('/advanced')
 def advanced():
