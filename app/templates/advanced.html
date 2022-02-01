@@ -2,10 +2,6 @@
 {% block content %}
 
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" ></script>
@@ -14,43 +10,34 @@
 <body>
 <div class="container">
     <h2>The last irrigation was at:</h2>    
-    <table class="new-table" id="myTable">
+    <table class="new-table table-config" id="myTable">
     <thead>
-    <tr><th>Date</th><th>Humidity</th><th>Liters Left</th></tr>
+    <tr><th>Timestamp</th><th>Humidity</th><th>Liters Left</th></tr>
     </thead>
     <tbody>
-    <tr><td type="date">2022/01/28</td><td>50%</td><td>10</td></tr>
-    <tr><td type="date">2022/05/12</td><td>70%</td><td>8</td></tr>
-    <tr><td type="date">2001/11/30</td><td>30%</td><td>0</td></tr>
-    <tr><td type="date">1974/12/21</td><td>20%</td><td>5</td></tr>
-    <tr><td type="date">2022/01/28</td><td>50%</td><td>10</td></tr>
-    <tr><td type="date">2022/05/12</td><td>70%</td><td>8</td></tr>
-    <tr><td type="date">2001/11/30</td><td>30%</td><td>0</td></tr>
-    <tr><td type="date">1974/12/21</td><td>20%</td><td>5</td></tr>
-    <tr><td type="date">2022/01/28</td><td>50%</td><td>10</td></tr>
-    <tr><td type="date">2022/05/12</td><td>70%</td><td>8</td></tr>
-    <tr><td type="date">2001/11/30</td><td>30%</td><td>0</td></tr>
-    <tr><td type="date">1974/12/21</td><td>20%</td><td>5</td></tr>
-    <tr><td type="date">2022/05/12</td><td>70%</td><td>8</td></tr>
-    <tr><td type="date">2001/11/30</td><td>30%</td><td>0</td></tr>
-    <tr><td type="date">1974/12/21</td><td>20%</td><td>5</td></tr>
-    <tr><td type="date">2022/01/28</td><td>50%</td><td>10</td></tr>
-    <tr><td type="date">2022/05/12</td><td>70%</td><td>8</td></tr>
-    <tr><td type="date">2001/11/30</td><td>30%</td><td>0</td></tr>
-    <tr><td type="date">1974/12/21</td><td>20%</td><td>5</td></tr>
-    <tr><td type="date">2022/05/12</td><td>70%</td><td>8</td></tr>
-    <tr><td type="date">2001/11/30</td><td>30%</td><td>0</td></tr>
-    <tr><td type="date">1974/12/21</td><td>20%</td><td>5</td></tr>
-    <tr><td type="date">2022/01/28</td><td>50%</td><td>10</td></tr>
-    <tr><td type="date">2022/05/12</td><td>70%</td><td>8</td></tr>
-    <tr><td type="date">2001/11/30</td><td>30%</td><td>0</td></tr>
-    <tr><td type="date">1974/12/21</td><td>20%</td><td>5</td></tr>
+        {% for i in data %}
+            <tr>
+                <td>{{ i["timestamp"] }}</td>
+                <td>{{ i["moisture"]*100 }}%</td>
+                <td>{{ i["liters_left"] }}</td>
+            </tr>
+        {% endfor %}
     </tbody>
     </table>
-    <div class="config-container">
-        <div><h3>Pump Water Use</h3><input type="text" id="fname" name="fname" placeholder="New Value"><a href="">Update</a></div>
-        <div><h3>Water Capacity</h3><input type="text" id="fname" name="fname" placeholder="New Value"><a href="">Update</a></div>
-    </div>
+    <form action="{{ url_for('advanced')}}" method="POST" enctype="multipart/form-data">
+        <div class="config-container">
+            <div>
+                <h3>Pump Water Use</h3>
+                <input type="text" id="fname" name="fname" placeholder="{{ water_capacity }}">
+                <button name=pump_use value="pump_use">Update</button>
+            </div>
+            <div>
+                <h3>Water Capacity</h3>
+                <input type="text" id="fname" name="fname" placeholder="{{ water_capacity }}">
+                <button name=water_capacity value="water_capacity">Update</button>
+            </div>
+        </div>
+    </form>
 </div>
 
 <script>

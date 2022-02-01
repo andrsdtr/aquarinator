@@ -22,9 +22,11 @@ firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 
 def add_measurement(moisture): 
-    timestamp = str(datetime.now())[11:-10]
+    timestamp = str(datetime.now())
+    time = str(timestamp)[11:-10]
+    liters_left = 5
     key = re.sub('\.|\-|\:|\ ', '', str(datetime.now()))
-    data = {'timestamp': timestamp, 'moisture': moisture}
+    data = {'time': time, 'timestamp': timestamp, 'moisture': moisture, 'liters_left': liters_left}
     db.child('moisture_mesurements').child(key).set(data)
 
 def get_labels_values(data):
@@ -63,7 +65,6 @@ def base_control():
     elif len(values) == 0:
         humidity = 'no measurement yet...'
     
-    print(type(data))
     if request.method == 'POST':
         i = 29
         # adding random values to db:
@@ -78,9 +79,33 @@ def base_control():
                             values = values,
                             humidity = humidity)
 
-@app.route('/advanced')
+@app.route('/advanced', methods=['POST', 'GET'])
 def advanced():
-    return render_template('advanced.html')
+    data = db.child('moisture_mesurements').get()
+    if data.val() is not None:
+        pro_data = []
+        for i in data.each():
+            pro_data.append(i.val())
+    
+    if request.form.get('pump_use') == "pump_use":
+        db.child('pump_use').set({'pump_use': 1})
+    elif request.form.get('water_capacity') == "water_capacity":
+        db.child('water_capacity').set({'water_capacity': 1})
+
+    if db.child('pump_use').get().val() is None:
+        pump_use = 'New Value'
+    elif db.child('pump_use').get().val() is not None:
+        pump_use = db.child('pump_use').get().val()['pump_use']
+
+    if db.child('water_capacity').get().val() is None:
+        water_capacity = 'New Value'
+    elif db.child('water_capacity').get().val() is not None:
+        water_capacity = db.child('water_capacity').get().val()['water_capacity']
+
+    return render_template('advanced.html',
+                            data = pro_data,
+                            pump_use = pump_use,
+                            water_capacity = water_capacity)
 
 
 if __name__ == '__main__':

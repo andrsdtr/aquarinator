@@ -99,7 +99,7 @@
   min-width: 400px;
   border-radius: 5px 5px 0 0;
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  padding-top: 10px;
 }
 
 .new-table thead tr {
@@ -170,16 +170,15 @@
   margin: 1rem;
 }
 
-.config-container div a {
+.config-container div button {
   color: white;
   background-color: #009879;
   padding: 12px 55px;
   border-radius: 5px;
-  width: 80px;
   text-decoration: none;
 }
 
-.config-container div a:hover {
+.config-container div button:hover {
   background-color: #62c7b3;
   transition: ease .25s;
   color: white;
