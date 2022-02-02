@@ -4,6 +4,8 @@ from flask import Flask, render_template, request
 import pyrebase, re
 from datetime import datetime
 
+import water
+
 
 app = Flask(__name__)
 config = {
@@ -74,6 +76,7 @@ def base_control():
         #    i-=1
         
         # Hier bewässerungsfunktion einfügen
+        water.pump_on()
     return render_template('base_control.html',
                             labels = labels,
                             values = values,
