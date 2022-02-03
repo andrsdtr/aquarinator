@@ -91,17 +91,19 @@ def advanced():
             pro_data.append(i.val())
     
     if request.form.get('pump_use') == "pump_use":
-        db.child('pump_use').set({'pump_use': 1})
+        pump_use = int(request.form.get('pump_value'))
+        db.child('pump_use').set({'pump_use': pump_use})
     elif request.form.get('water_capacity') == "water_capacity":
-        db.child('water_capacity').set({'water_capacity': 1})
+        water_capacity = int(request.form.get('water_value'))
+        db.child('water_capacity').set({'water_capacity': water_capacity})
 
     if db.child('pump_use').get().val() is None:
-        pump_use = 'New Value'
+        pump_use = 'Enter new Value in '
     elif db.child('pump_use').get().val() is not None:
         pump_use = db.child('pump_use').get().val()['pump_use']
 
     if db.child('water_capacity').get().val() is None:
-        water_capacity = 'New Value'
+        water_capacity = 'Enter new Value in '
     elif db.child('water_capacity').get().val() is not None:
         water_capacity = db.child('water_capacity').get().val()['water_capacity']
 
