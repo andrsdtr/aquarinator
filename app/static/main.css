@@ -1,3 +1,7 @@
+.h1base{
+  margin-top: 1rem;
+  margin-left: 1.4rem;
+}
 .wrapper {
     display: flex; 
   }
@@ -205,7 +209,35 @@
 
   .button{
     display: grid;
-    width: 95%; 
+    width: 92.5%; 
   }
+
+
+  .container{
+    width: 90%;
+    margin-right: 3rem;
+  }
+  .config-container{
+    display: grid;
+    margin-left: 0.8em;
+  }
+  .config-container div{
+    margin-right: 1rem;
+    width: auto;
+    display: grid;
+    height: 75% ;
+  }
+   
+  .config-container div button {
+    width: 60%;
+    margin-left: 3.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .config-container div input {
+    margin: 1.7rem;
+    width: 80%;
+  }
+  
 }
 
