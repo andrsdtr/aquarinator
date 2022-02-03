@@ -23,15 +23,34 @@ firebase = pyrebase.initialize_app(config)
 
 db = firebase.database()
 
-def add_measurement(moisture): 
+def add_measurement(moisture, watered): 
     timestamp = str(datetime.now())
     time = str(timestamp)[11:-10]
     data = db.child('moisture_mesurements').get()
-    if data.val() is None:
-        moisture = db.child('water_capacity').get().val()['water_capacity']
-    liters_left = 5 
+    liters_left = db.child('liters_left').get().val()
+    pump_use = db.child('pump_use').get().val()
+    liter_state = liters_left['liters_left']
+    
+    #if liters_left is None or liters_left['liters_left'] == 'Not available':
+    #    if water_capacity is None:
+    #        db.child('liters_left').set({'liters_left': 'Not available'})
+    #    else:
+    #        db.child('liters_left').set({'liters_left': water_capacity['water_capacity']})
+
+    #if watered == True:
+    #    if water_capacity is None or pump_use is None or liters_left is None or liters_left ['liters_left'] == 'Not available':
+    #        db.child('liters_left').set({'liters_left': 'Not available'})
+    #    else:
+    #        new_state = int(liters_left['liters_left']) - (int(pump_use['pump_use'])/1000)
+    #        db.child('liters_left').set({'liters_left': new_state})
+
+    if watered == True:
+        liter_state = round((liters_left['liters_left'] - pump_use['pump_use']/1000), 1)
+        db.child('liters_left').set({'liters_left': liter_state})
+
     key = re.sub('\.|\-|\:|\ ', '', str(datetime.now()))
-    data = {'time': time, 'timestamp': timestamp, 'moisture': moisture, 'liters_left': liters_left}
+    
+    data = {'time': time, 'timestamp': timestamp, 'moisture': moisture, 'liters_left': liter_state}
     db.child('moisture_mesurements').child(key).set(data)
 
 def get_labels_values(data):
@@ -68,21 +87,30 @@ def base_control():
         humidity = str(int(values[-1]*100))+ '%'
     elif len(values) == 0:
         humidity = 'no measurement yet...'
-    
+    liters_left = db.child('liters_left').get().val()
+    if liters_left is None:
+        liter_state = 'Not available'
+    else:
+        if liters_left['liters_left'] <= 0:
+            liter_state = 'Bucket empty'
+        else: 
+            liter_state = str(liters_left['liters_left'])+'l'
+
     if request.method == 'POST':
-        i = 29
+        i = 1
         # adding random values to db:
 
-        #while i > 0: 
-        #    add_measurement(randrange(10)/10)
-        #    i-=1
+        while i > 0: 
+            add_measurement(randrange(10)/10, True)
+            i-=1
         
         # Hier bewässerungsfunktion einfügen
         #water.pump_on()
     return render_template('base_control.html',
                             labels = labels,
                             values = values,
-                            humidity = humidity)
+                            humidity = humidity,
+                            liter_state = liter_state)
 
 @app.route('/advanced', methods=['POST', 'GET'])
 def advanced():
@@ -98,6 +126,7 @@ def advanced():
     elif request.form.get('water_capacity') == "water_capacity":
         water_capacity = int(request.form.get('water_value'))
         db.child('water_capacity').set({'water_capacity': water_capacity})
+        db.child('liters_left').set({'liters_left': water_capacity})
 
     if db.child('pump_use').get().val() is None:
         pump_use = 'Enter new Value in '
