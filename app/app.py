@@ -26,7 +26,10 @@ db = firebase.database()
 def add_measurement(moisture): 
     timestamp = str(datetime.now())
     time = str(timestamp)[11:-10]
-    liters_left = 5
+    data = db.child('moisture_mesurements').get()
+    if data.val() is None:
+        moisture = db.child('water_capacity').get().val()['water_capacity']
+    liters_left = 5 
     key = re.sub('\.|\-|\:|\ ', '', str(datetime.now()))
     data = {'time': time, 'timestamp': timestamp, 'moisture': moisture, 'liters_left': liters_left}
     db.child('moisture_mesurements').child(key).set(data)
@@ -37,7 +40,6 @@ def get_labels_values(data):
     pro_data = []
     if data.val() is None:
         return [],[]
-
     for i in data.each():
         pro_data.append(i.val())
     if len(pro_data) <= 30:
@@ -85,8 +87,8 @@ def base_control():
 @app.route('/advanced', methods=['POST', 'GET'])
 def advanced():
     data = db.child('moisture_mesurements').get()
+    pro_data = []
     if data.val() is not None:
-        pro_data = []
         for i in data.each():
             pro_data.append(i.val())
     
