@@ -47,6 +47,7 @@ def add_measurement(moisture, watered):
     if watered == True:
         liter_state = round((liters_left['liters_left'] - pump_use['pump_use']/1000), 1)
         db.child('liters_left').set({'liters_left': liter_state})
+        db.child('watered').set({'watered': liter_state})
 
     key = re.sub('\.|\-|\:|\ ', '', str(datetime.now()))
     
@@ -81,6 +82,40 @@ def get_labels_values(data):
 
 @app.route('/', methods = ['GET', 'POST'])
 def base_control():
+    pump_use = db.child('pump_use').get().val()
+    water_capacity = db.child('water_capacity').get().val()
+
+    if request.form.get('pump_use') == "pump_use":
+        pump_use = int(request.form.get('pump_value'))
+        db.child('pump_use').set({'pump_use': pump_use})
+    elif request.form.get('water_capacity') == "water_capacity":
+        water_capacity = int(request.form.get('water_value'))
+        db.child('water_capacity').set({'water_capacity': water_capacity})
+        db.child('liters_left').set({'liters_left': water_capacity})
+    elif request.form.get('water') == 'water':
+        i = 1
+        # adding random values to db:
+
+        while i > 0: 
+            add_measurement(randrange(10)/10, True)
+            i-=1
+        
+        # Hier bewässerungsfunktion einfügen
+        #water.pump_on()
+
+    if pump_use is None or water_capacity is None:
+        if db.child('pump_use').get().val() is None:
+            pump_use = 'Enter new Value in '
+        elif db.child('pump_use').get().val() is not None:
+            pump_use = db.child('pump_use').get().val()['pump_use']
+        if db.child('water_capacity').get().val() is None:
+            water_capacity = 'Enter new Value in '
+        elif db.child('water_capacity').get().val() is not None:
+            water_capacity = db.child('water_capacity').get().val()['water_capacity']
+        return render_template('start_config.html',
+                                pump_use = pump_use,
+                                water_capacity = water_capacity)
+
     data = db.child('moisture_mesurements').get()
     labels, values = get_labels_values(data)
     if len(values) > 0 :
@@ -95,22 +130,13 @@ def base_control():
             liter_state = 'Bucket empty'
         else: 
             liter_state = str(liters_left['liters_left'])+'l'
-
-    if request.method == 'POST':
-        i = 1
-        # adding random values to db:
-
-        while i > 0: 
-            add_measurement(randrange(10)/10, True)
-            i-=1
-        
-        # Hier bewässerungsfunktion einfügen
-        #water.pump_on()
+    average_time = 3
     return render_template('base_control.html',
                             labels = labels,
                             values = values,
                             humidity = humidity,
-                            liter_state = liter_state)
+                            liter_state = liter_state,
+                            average_time = average_time)
 
 @app.route('/advanced', methods=['POST', 'GET'])
 def advanced():

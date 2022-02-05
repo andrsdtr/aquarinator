@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1 class="h1base">The last irrigation was at: </h1>
+<h1 class="h1base">The last Irrigation was at: {{ last_irrigation }}</h1>
 
 <link rel="stylesheet" href="{{ url_for('static', filename='/main.css') }}">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
@@ -44,11 +44,11 @@
     </div>    
     <div id="right wrapper">
         <div class="cardkpi">
-            <div class="card-headerkpi">Average Usage</div>
+            <div class="card-headerkpi">Average Time between Irrigations</div>
             <div class="card-mainkpi">
                 <img src="https://www.fortuna-gronau.de/wp-content/uploads/2017/02/durchschnitt.gif"
                     class="material-iconskpi">
-                <div class="main-descriptionkpi">50</div>
+                <div class="main-descriptionkpi">{{ average_time }}</div>
             </div>
         </div>
         <div class="cardkpi">
@@ -67,7 +67,7 @@
             </div>
         </div>
         <form action="{{ url_for('base_control')}}" method="POST" enctype="multipart/form-data">
-            <button class="button">
+            <button name=water value="water" class="button">
                 <div class="card-mainkpi">
                     <img src="https://library.kissclipart.com/20180901/ouw/kissclipart-watering-can-icon-clipart-watering-cans-computer-i-a498c0881b078b51.png"
                         class="material-iconbutton">
