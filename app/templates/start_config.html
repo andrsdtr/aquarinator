@@ -4,6 +4,10 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='/main.css') }}">
 
 <h1 class="h1base">Start-up configuration</h1> 
+
+<div class="centerstart">
+    <p class="pbase">Please fill the water bucket and add the capacity.  You may also add the quantity of water that your pump uses over time.</p>
+    <p class="pbase">You can always change those settings in the advanced control section.</p>
 <div class="wrapper">   
     <form action="{{ url_for('base_control')}}" method="POST" enctype="multipart/form-data">
         <div class="config-container">
@@ -20,5 +24,5 @@
         </div>
     </form>
 </div>
-
+</div>
 {% endblock %}

@@ -9,12 +9,12 @@
 </head>
 <body>
 <div class="container">
-    <h2>The last irrigation was at: {{ last_irrigation }}</h2>    
+    <button class="measurebttn" name=new_measure value="new_measure">Press here to perform a manual measurement</button> 
     <table class="new-table table-config" id="myTable">
     <thead>
     <tr><th>Timestamp</th><th>Humidity</th><th>Liters Left</th></tr>
     </thead>
-    <tbody>
+    <tbody class="">
         {% for i in data %}
             <tr>
                 <td>{{ i["timestamp"] }}</td>
@@ -25,25 +25,42 @@
     </tbody>
     </table>
     <form action="{{ url_for('advanced')}}" method="POST" enctype="multipart/form-data">
+    <div style="text-align:center">
+        <button class="resetb" name=reset value="reset" type="submit" onclick="clicked(event)">Reset statistics</button>
+    </div>
         <div class="config-container">
             <div>
                 <h3>Pump Water Use</h3>
                 <input type="text" id="pump_value" name=pump_value placeholder="{{ pump_use }}ml">
-                <button name=pump_use value="pump_use">Update</button>
+                <button name=pump_use value="pump_use" onclick="return confirm('Are you sure?')">Update</button>
             </div>
             <div>
                 <h3>Water Capacity / refilled with</h3>
                 <input type="text" id="water_value" name=water_value placeholder="{{ water_capacity }}l">
                 <button name=water_capacity value="water_capacity">Update</button>
             </div>
+           
         </div>
     </form>
 </div>
 
 <script>
     $(document).ready( function () {
-    $('#myTable').DataTable();
+    $('#myTable').DataTable({
+        "order":[[0,"desc"]]
+    });
+
 } );
     </script>
+
+<script type="text/javascript">
+    function clicked() {
+       if (confirm('Do you want to reset the statistics?')) {
+           yourformelement.submit();
+       } else {
+           return false;
+       }
+    }
+</script>
 </body>
 {% endblock %}

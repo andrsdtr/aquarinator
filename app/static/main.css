@@ -1,6 +1,9 @@
 .h1base{
   margin-top: 1rem;
-  margin-left: 1.4rem;
+  text-align: center;
+}
+.hnew {
+  color: grey;
 }
 .wrapper {
     display: flex; 
@@ -184,10 +187,45 @@
   text-decoration: none;
 }
 
+.measurebttn {
+  color: white;
+  background-color: #009879;
+  border: #009879;
+  padding: 12px 55px;
+  border-radius: 5px;
+  margin-bottom:2rem;
+  margin-top:1rem;
+
+  text-decoration: none;
+}
+
 .config-container div button:hover {
   background-color: #62c7b3;
   transition: ease .25s;
   color: white;
+}
+
+.centerstart{
+  justify-content: center;
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+
+.pbase {
+  font-size: large;
+  color: grey;
+  margin-left: 3.5rem;
+}
+
+.resetb{
+  font-size: larger;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: rgb(128, 25, 25);
+  color: white;
+  border: black;
+  border-radius: 5px;
+  padding: 0.5rem;
 }
 
 @media only screen and (max-width: 500px) {
@@ -212,32 +250,48 @@
     width: 92.5%; 
   }
 
-
   .container{
-    width: 90%;
-    margin-right: 3rem;
+    width: auto;
   }
+ 
   .config-container{
+    width: auto;
+    height: auto;
     display: grid;
-    margin-left: 0.8em;
+    margin-right: 0.2rem;
   }
   .config-container div{
-    margin-right: 1rem;
+    height: auto;
     width: auto;
-    display: grid;
-    height: 75% ;
+    margin-left:2rem ;
   }
    
   .config-container div button {
-    width: 60%;
-    margin-left: 3.5rem;
+    width: auto;
+    margin-left: 0.2rem;
     margin-bottom: 1rem;
   }
 
   .config-container div input {
     margin: 1.7rem;
-    width: 80%;
+    width: auto;
   }
   
-}
+  .config-container h3{
+    width: auto;
+  }
 
+  .centerstart{
+    margin-top: 1rem;
+    margin-left: 0.4rem;
+    width: auto;
+    height: auto;
+  }
+
+  .pbase {
+    font-size: larger;
+    padding: 0.5rem;
+    margin-left: 1.2rem;
+    color: grey;
+  }
+}
