@@ -94,6 +94,7 @@
     justify-content: center;    
     align-items: center;        
     padding: 15px 0;    
+  
 }
 
 .button:active {
@@ -195,8 +196,13 @@
   border-radius: 5px;
   margin-bottom:2rem;
   margin-top:1rem;
-
   text-decoration: none;
+}
+
+.measurebttn:hover{
+  background-color: #62c7b3;
+  transition: ease .25s;
+  color: white;
 }
 
 .config-container div button:hover {
@@ -226,6 +232,12 @@
   border: black;
   border-radius: 5px;
   padding: 0.5rem;
+}
+
+.resetb:hover{
+  background-color: rgb(170, 67, 67);
+  transition: ease .25s;
+  color: white;
 }
 
 @media only screen and (max-width: 500px) {
