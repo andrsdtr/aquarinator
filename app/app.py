@@ -126,11 +126,9 @@ def base_control():
     elif request.form.get('water') == 'water':
         i = 1
         # adding random values to db:
-
         while i > 0: 
             add_measurement(randrange(10)/10, True)
             i-=1
-        
         # Hier bewässerungsfunktion einfügen
         #water.pump_on()
 
@@ -195,6 +193,11 @@ def advanced():
             water_capacity = int(request.form.get('water_value'))
             db.child('water_capacity').set({'water_capacity': water_capacity})
             db.child('liters_left').set({'liters_left': water_capacity})
+    elif request.form.get('new_measure') == "new_measure":
+        #Hier manuell messen einfügen
+        pass
+    elif request.form.get('reset') == "reset":
+        db.remove()
 
     if db.child('pump_use').get().val() is None:
         pump_use = 'Enter new Value in '

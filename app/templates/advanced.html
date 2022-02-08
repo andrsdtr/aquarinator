@@ -26,7 +26,9 @@
     </table>
     <form action="{{ url_for('advanced')}}" method="POST" enctype="multipart/form-data">
     <div style="text-align:center">
-        <button class="resetb" name=reset value="reset" type="submit" onclick="clicked(event)">Reset statistics</button>
+        <form action="{{ url_for('advanced')}}" method="POST" enctype="multipart/form-data">
+            <button class="resetb" name=reset value="reset" type="submit" onclick="clicked(event)">Reset statistics</button>
+        </form>
     </div>
         <div class="config-container">
             <div>
@@ -49,18 +51,8 @@
     $('#myTable').DataTable({
         "order":[[0,"desc"]]
     });
-
 } );
-    </script>
-
-<script type="text/javascript">
-    function clicked() {
-       if (confirm('Do you want to reset the statistics?')) {
-           yourformelement.submit();
-       } else {
-           return false;
-       }
-    }
 </script>
 </body>
+
 {% endblock %}
