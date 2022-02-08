@@ -205,6 +205,11 @@
   color: white;
 }
 
+.measurebttn:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 .config-container div button:hover {
   background-color: #62c7b3;
   transition: ease .25s;
@@ -238,6 +243,12 @@
   background-color: rgb(170, 67, 67);
   transition: ease .25s;
   color: white;
+}
+
+.resetb:active{
+  background-color: rgb(207, 87, 87);
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 @media only screen and (max-width: 500px) {
