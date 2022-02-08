@@ -1,7 +1,7 @@
 #!/usr/bin/python3 python3
 
 import RPi.GPIO as GPIO
-import datetime
+from datetime import datetime
 from time import sleep
 import pyrebase, re
 
@@ -38,7 +38,7 @@ def pump_on():
     GPIO.output(7, GPIO.LOW)
     GPIO.output(7, GPIO.HIGH)
     GPIO.output(7, GPIO.LOW)
-    sleep(3)
+    sleep(1)
     GPIO.output(7, GPIO.HIGH)
 
 def water_loop():
@@ -49,10 +49,6 @@ def water_loop():
     pump_use = db.child('pump_use').get().val()
     liter_state = liters_left['liters_left']
     key = re.sub('\.|\-|\:|\ ', '', str(datetime.now()))
-
-    GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(7, GPIO.OUT) #pump
-    GPIO.setup(38, GPIO.IN) #sensor
 
     moisture = get_status()
 
@@ -70,9 +66,15 @@ def water_loop():
         total += watered_with/1000
         db.child('watered').child('total').set({'total': total})
 
-        sleep(60*30)
+        sleep(5)
         
+    elif moisture == 1:
+        pass
+
     data = {'time': time, 'timestamp': timestamp, 'moisture': moisture, 'liters_left': liter_state}
     db.child('moisture_mesurements').child(key).set(data)
 
+while True:
+    water_loop()
+    sleep(5)
         

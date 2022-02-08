@@ -3,8 +3,9 @@ from random import randrange
 from flask import Flask, render_template, request
 import pyrebase, re
 from datetime import datetime
+import threading
 
-#import water
+import water
 
 
 app = Flask(__name__)
@@ -22,6 +23,9 @@ config = {
 firebase = pyrebase.initialize_app(config)
 
 db = firebase.database()
+
+def water_loop():
+    import water_loop
 
 def add_measurement(moisture, watered):
     '''
@@ -116,6 +120,10 @@ def base_control():
         else:
             pump_use = int(request.form.get('pump_value'))
             db.child('pump_use').set({'pump_use': pump_use})
+            if db.child('water_capacity').get().val() is not None:
+                loop_thread = threading.Thread(target=water_loop)
+                loop_thread.start()
+                pass
     elif request.form.get('water_capacity') == "water_capacity":
         if request.form.get('water_value') == '':
             pass
@@ -123,6 +131,10 @@ def base_control():
             water_capacity = int(request.form.get('water_value'))
             db.child('water_capacity').set({'water_capacity': water_capacity})
             db.child('liters_left').set({'liters_left': water_capacity})
+            if db.child('pump_use').get().val() is not None:
+                loop_thread = threading.Thread(target=water_loop)
+                loop_thread.start()
+                pass
     elif request.form.get('water') == 'water':
         i = 1
         # adding random values to db:
@@ -130,7 +142,7 @@ def base_control():
             add_measurement(randrange(10)/10, True)
             i-=1
         # Hier bewässerungsfunktion einfügen
-        #water.pump_on()
+        water.pump_on()
 
     last_irrigation = get_last_irrigation()
 
@@ -143,9 +155,6 @@ def base_control():
             water_capacity = 'Enter new Value in '
         elif db.child('water_capacity').get().val() is not None:
             water_capacity = db.child('water_capacity').get().val()['water_capacity']
-        if db.child('pump_use').get().val() is not None and db.child('water_capacity').get().val() is not None:
-            # Hier Loop start einfügen
-            pass
         return render_template('start_config.html',
                                 pump_use = pump_use,
                                 water_capacity = water_capacity)
@@ -194,7 +203,8 @@ def advanced():
             db.child('water_capacity').set({'water_capacity': water_capacity})
             db.child('liters_left').set({'liters_left': water_capacity})
     elif request.form.get('new_measure') == "new_measure":
-        #Hier manuell messen einfügen
+        add_measurement(water.get_status(), False)
+        print("Get status")
         pass
     elif request.form.get('reset') == "reset":
         db.remove()
@@ -216,4 +226,4 @@ def advanced():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=80, host='0.0.0.0')
+    app.run(debug=True, port=4321, host='0.0.0.0')

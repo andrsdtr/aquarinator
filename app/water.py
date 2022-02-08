@@ -1,5 +1,4 @@
 import RPi.GPIO as GPIO
-import time 
 from time import sleep
 
 def pump_on():
@@ -10,7 +9,6 @@ def pump_on():
     GPIO.output(7, GPIO.LOW)
     sleep(3)
     GPIO.output(7, GPIO.HIGH)
-#pump_on()
 
 def get_status():
     GPIO.setmode(GPIO.BOARD)
