@@ -8,11 +8,11 @@ Aquarinator was developed by the following team members:
 - Can Berkil (2087362)
 - Simon Schmid (9917195)
 
-** Development Team
+Development Team
 - Webapp and Database (Andreas Dichter, Can Berkil)
 - Irrigation system (Simon Schmid)
 
-** Softwares which were used during the project
+Softwares which were used during the project
 - Raspberry Pi OS
 - Python
 - Flask
