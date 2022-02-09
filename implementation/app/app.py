@@ -1,5 +1,3 @@
-from numpy import empty
-from random import randrange
 from flask import Flask, render_template, request
 import pyrebase, re
 from datetime import datetime
@@ -146,12 +144,6 @@ def base_control():
                 loop_thread.start()
                 pass
     elif request.form.get('water') == 'water':
-        i = 1
-        # adding random values to db:
-        while i > 0: 
-            add_measurement(randrange(10)/10, True)
-            i-=1
-        # Hier bewässerungsfunktion einfügen
         water.pump_on()
 
     last_irrigation = get_last_irrigation()

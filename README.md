@@ -28,7 +28,7 @@ With the help of this irrigation system, the plants can be watered automatically
 
 ** **
 ## Hardware Setup
-Here you can see how the different components have to be wired together! 
+Here you can see how the different components have to be wired together:
 <img width="1049" alt="Bildschirmfoto 2022-02-09 um 17 03 24" src="https://user-images.githubusercontent.com/61969721/153240309-14dfd319-495d-465a-b8f8-ecee8bad288a.png">
 
 ## Software Setup
@@ -38,12 +38,9 @@ The code in aquarinator/implentation is just excecutable on a Raspberry Pi. Ther
 **Running implementation on Raspberry Pi**
 1. install python3
 2. the following packages are necessary:
-- numpy==1.21.4
-- pandas==1.3.5
-- Flask==0.12
-- flask-restful==0.3.5
-- pyrebase
-- RPi.GPIO == 0.7.0
+    - Flask
+    - pyrebase
+    - RPi.GPIO
 3. navigate to the implementation/app folder
 4. run "python3 app.py"
 5. the webapp is available at 0.0.0.0:4321 on the Pi and on the local network via the IP of the Pi and the port 4321 (in testcase: 192.168.0.4:4321)
@@ -53,3 +50,6 @@ The code in aquarinator/implentation is just excecutable on a Raspberry Pi. Ther
 2. navigate to aquarinator/dev_container_webapp
 3. run docker-compose up
 4. Once the building process is done and the contaiiner is running you can navigate to "localhost:5000" in your browser
+
+**Connect your own Firebase RT Database**
+- To conect your own Fireabse Real Time Database just change the config variable in the top of the app.py file to the information of your database. The tables and entrys will be created automatically.
