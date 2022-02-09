@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class="h1base">The last Irrigation was at: {{ last_irrigation }}</h1>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='/main.css') }}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<div class="wrapper">
+    <div class="left box">
+        <canvas id="lineChart"></canvas>
+        <script>
+            var ctx = document.getElementById("lineChart").getContext("2d");
+            var lineChart = new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: {{ labels | safe }},
+            datasets: [
+                {
+                    label: "Moisture Mesurements",
+                    data: {{ values | safe}},
+                fill: false,
+                borderColor: "rgb(0,152,121)",
+                lineTension: 0.1
+                    }
+            ]
+            },
+            options: {
+                scales: {
+                    yAxes: [
+                        {
+                            ticks: {
+                                callback: function (tick) {
+                                    return (tick * 100).toString() + '%';
+                                },
+                                beginAtZero: true,
+                                max: 1
+                            }
+                        }
+                    ]
+                }
+            }
+        });
+        </script>
+    </div>    
+    <div id="right wrapper">
+        <div class="cardkpi">
+            <div class="card-headerkpi">Average Water Use per Week</div>
+            <div class="card-mainkpi">
+                <img src="https://www.fortuna-gronau.de/wp-content/uploads/2017/02/durchschnitt.gif"
+                    class="material-iconskpi">
+                <div class="main-descriptionkpi">{{ average_use }}</div>
+            </div>
+        </div>
+        <div class="cardkpi">
+            <div class="card-headerkpi">Liter-Left</div>
+            <div class="card-mainkpi">
+                <img src="https://static.vecteezy.com/ti/gratis-vektor/p1/353897-eimer-symbol-kostenlos-vektor.jpg"
+                    class="material-iconskpi">
+                <div class="main-descriptionkpi">{{ liter_state }}</div>
+            </div>
+        </div>
+        <div class="cardkpi">
+            <div class="card-headerkpi">Humidity</div>
+            <div class="card-mainkpi">
+                <img src="https://cdn-icons-png.flaticon.com/512/63/63123.png" class="material-iconskpi">
+                <div class="main-descriptionkpi">{{ humidity }}</div>
+            </div>
+        </div>
+        <form action="{{ url_for('base_control')}}" method="POST" enctype="multipart/form-data">
+            <button name=water value="water" class="button">
+                <div class="card-mainkpi">
+                    <img src="https://library.kissclipart.com/20180901/ouw/kissclipart-watering-can-icon-clipart-watering-cans-computer-i-a498c0881b078b51.png"
+                        class="material-iconbutton">
+                    <div class="main-descriptionkpi">Press here to water!</div>
+                </div>
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

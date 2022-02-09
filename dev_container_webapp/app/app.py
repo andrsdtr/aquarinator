@@ -3,10 +3,6 @@ from random import randrange
 from flask import Flask, render_template, request
 import pyrebase, re
 from datetime import datetime
-import threading
-
-import water
-
 
 app = Flask(__name__)
 config = {
@@ -23,9 +19,6 @@ config = {
 firebase = pyrebase.initialize_app(config)
 
 db = firebase.database()
-
-def water_loop():
-    import water_loop
 
 def add_measurement(moisture, watered):
     '''
@@ -58,6 +51,9 @@ def add_measurement(moisture, watered):
     db.child('moisture_mesurements').child(key).set(data)
 
 def get_labels_values():
+    '''
+    Function returns graph x and y axis from moisture_mesurements in DB
+    '''
     data = db.child('moisture_mesurements').get().each()
     labels = []
     values = []
@@ -81,6 +77,10 @@ def get_labels_values():
     return labels, values
 
 def get_average():
+    '''
+    Function to calculate the average use of water per week based on db entrys
+    It scales per day values up to per week
+    '''
     watered = db.child('watered').child('watered').get().each()
     if watered is not None:
         if len(watered) > 1:
@@ -111,6 +111,9 @@ def get_last_irrigation():
 
 @app.route('/', methods = ['GET', 'POST'])
 def base_control():
+    '''
+    All logic for the Base Control and startup config page is implemented in this view function
+    '''
     pump_use = db.child('pump_use').get().val()
     water_capacity = db.child('water_capacity').get().val()
 
@@ -121,8 +124,7 @@ def base_control():
             pump_use = int(request.form.get('pump_value'))
             db.child('pump_use').set({'pump_use': pump_use})
             if db.child('water_capacity').get().val() is not None:
-                loop_thread = threading.Thread(target=water_loop)
-                loop_thread.start()
+                #start water loop here
                 pass
     elif request.form.get('water_capacity') == "water_capacity":
         if request.form.get('water_value') == '':
@@ -132,17 +134,14 @@ def base_control():
             db.child('water_capacity').set({'water_capacity': water_capacity})
             db.child('liters_left').set({'liters_left': water_capacity})
             if db.child('pump_use').get().val() is not None:
-                loop_thread = threading.Thread(target=water_loop)
-                loop_thread.start()
+                #start water loop here
                 pass
     elif request.form.get('water') == 'water':
-        i = 1
-        # adding random values to db:
-        while i > 0: 
-            add_measurement(randrange(10)/10, True)
-            i-=1
-        # Hier bewässerungsfunktion einfügen
-        water.pump_on()
+        # watering function here
+        '''
+        Uncomment to add rendom measurement entry to db when pressing water button to test webapp
+        add_measurement(randrange(10)/10, True)
+        '''
 
     last_irrigation = get_last_irrigation()
 
@@ -183,6 +182,9 @@ def base_control():
 
 @app.route('/advanced', methods=['POST', 'GET'])
 def advanced():
+    '''
+    All logic for the Advanced Base Control page is implemented in this view function
+    '''
     data = db.child('moisture_mesurements').get()
     pro_data = []
     if data.val() is not None:
@@ -203,8 +205,7 @@ def advanced():
             db.child('water_capacity').set({'water_capacity': water_capacity})
             db.child('liters_left').set({'liters_left': water_capacity})
     elif request.form.get('new_measure') == "new_measure":
-        add_measurement(water.get_status(), False)
-        print("Get status")
+        # manuel measurement function here
         pass
     elif request.form.get('reset') == "reset":
         db.remove()
@@ -226,4 +227,4 @@ def advanced():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=4321, host='0.0.0.0')
+    app.run(debug=True, port=80, host='0.0.0.0')
