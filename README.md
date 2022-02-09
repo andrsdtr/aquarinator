@@ -19,17 +19,34 @@ With the help of this irrigation system, the plants can be watered automatically
 - Firebase
 
 **Hardware components**
-- Raspberry Pi 4
--
+- Raspberry Pi 4B (tested on this one, probably works on older ones too)
+- Water pump
+- Relay module
+- Moisture sensor
+- A/D Converter
+- Wires
 
 ** **
 ## Hardware Setup
-Here you can see how the different components have to wired together (bild von schaltplan einfügen)
+Here you can see how the different components have to be wired together! 
+<img width="1049" alt="Bildschirmfoto 2022-02-09 um 17 03 24" src="https://user-images.githubusercontent.com/61969721/153240309-14dfd319-495d-465a-b8f8-ecee8bad288a.png">
+
 ## Software Setup
 The code in aquarinator/implentation is just excecutable on a Raspberry Pi. Therefor there is still the option to view just the webapp on the development container. Both options will be explained in the following:
 
+
 **Running implementation on Raspberry Pi**
-1. ...
+1. install python3
+2. the following packages are necessary:
+- numpy==1.21.4
+- pandas==1.3.5
+- Flask==0.12
+- flask-restful==0.3.5
+- pyrebase
+- RPi.GPIO == 0.7.0
+3. navigate to the implementation/app folder
+4. run "python3 app.py"
+5. the webapp is available at 0.0.0.0:4321 on the Pi and on the local network via the IP of the Pi and the port 4321 (in testcase: 192.168.0.4:4321)
 
 **Running Development Container**
 1. install docker (including docker-compose)
