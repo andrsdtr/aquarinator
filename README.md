@@ -1,7 +1,7 @@
 # Aquarinator
 
 ## Use-Case
-With the help of this irrigation system, the plants can be watered automatically. So the user no longer has to worry that his plants are not sufficiently watered, because the irrigation is controlled by sensors. This also controls the aspect of targeted watering, because watering is only done when it is really necessary. In addition to this function, the user also has the option to view the data of his monitoring on a web app and can thus also perform some functions such as manual watering or measuring the humidity.
+Aquarinator is an automated irrigation system. The user does not have to worry about his plants getting too little water, because the watering is controlled by sensors. Consequently, watering only occurs when it is really necessary. In addition to this, the user can monitor the data produced by the sensors and irrigations in the responsive web app. Manual watering and measurements can also be performed here.
 
 **Aquarinator was developed by the following team members:**
 - Andreas Dichter (6104795)
