@@ -76,5 +76,5 @@ def water_loop():
 
 while True:
     water_loop()
-    sleep(5)
+    sleep(10)
         
