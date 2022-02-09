@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<head>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" ></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/main.css') }}">
+</head>
+<body>
+<div class="container">
+    <form action="{{ url_for('advanced')}}" method="POST" enctype="multipart/form-data">
+    <button class="measurebttn" name=new_measure value="new_measure">Press here to perform a manual measurement</button> 
+    <table class="new-table table-config" id="myTable">
+    <thead>
+    <tr><th>Timestamp</th><th>Humidity</th><th>Liters Left</th></tr>
+    </thead>
+    <tbody class="">
+        {% for i in data %}
+            <tr>
+                <td>{{ i["timestamp"] }}</td>
+                <td>{{ i["moisture"]*100 }}%</td>
+                <td>{{ i["liters_left"] }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <div style="text-align:center">
+            <button class="resetb" name=reset value="reset" type="submit">Reset statistics</button>
+    </div>
+        <div class="config-container">
+            <div>
+                <h3>Pump Water Use</h3>
+                <input type="text" id="pump_value" name=pump_value placeholder="{{ pump_use }}ml">
+                <button name=pump_use value="pump_use">Update</button>
+            </div>
+            <div>
+                <h3>Water Capacity / refilled with</h3>
+                <input type="text" id="water_value" name=water_value placeholder="{{ water_capacity }}l">
+                <button name=water_capacity value="water_capacity">Update</button>
+            </div>
+           
+        </div>
+    </form>
+</div>
+
+<script>
+    $(document).ready( function () {
+    $('#myTable').DataTable({
+        "order":[[0,"desc"]]
+    });
+} );
+</script>
+</body>
+
+{% endblock %}

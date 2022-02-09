@@ -1,0 +1,320 @@
+.h1base{
+  margin-top: 1rem;
+  text-align: center;
+}
+.hnew {
+  color: grey;
+}
+.wrapper {
+    display: flex; 
+  }
+  .left {
+    flex: 1; 
+    height: auto;
+  }
+  .right {
+    flex-wrap: wrap;
+    flex: 1; 
+  }
+  .box {
+    display: flex;
+    width: calc(50% - 4px);
+    margin: 0.99rem;
+    background: rgb(255, 255, 255);
+    border: 3px solid black;    
+    border-radius: 15px; 
+}
+
+.cardkpi{
+    height: 180px;
+    width: 320px;               
+    display: flex;                
+    flex-direction: column;       
+    border: 3px solid black;    
+    border-radius: 15px;           
+    overflow: hidden; 
+    margin: 0.99rem;
+    background-color: white;
+}
+  
+.card-headerkpi {
+    color: black;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    border-bottom: 3px solid black;
+    background-color: white;
+    padding: 5px 10px;
+}
+  
+.card-mainkpi {
+    display: flex;              
+    flex-direction: column;     
+    justify-content: center;    
+    align-items: center;        
+    padding: 15px 0;          
+}
+  
+.material-iconskpi {
+    margin-top: 1rem;
+    height: 60px;
+    width: 60px;  
+    font-size: 36px;
+    color: black;
+    margin-bottom: 5px;
+}
+
+.material-iconbutton {
+  margin-top: 1rem;
+  height: 90px;
+  width: 90px;  
+  font-size: 36px;
+  color: black;
+  margin-bottom: 5px;
+}
+  
+.main-descriptionkpi {
+    margin-top: 0.6rem;
+    margin-left: 0.39rem;
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+.button {
+    height: 180px;
+    width: 320px;  
+    display: flex;               
+    flex-direction: column;      
+    border: 3px solid black;    
+    border-radius: 15px;           
+    overflow: hidden; 
+    margin: 0.98rem;
+    background-color: rgb(77, 154, 255);
+    justify-content: center;    
+    align-items: center;        
+    padding: 15px 0;    
+  
+}
+
+.button:active {
+  border: 5px solid black;   
+}
+
+
+.new-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  padding-top: 10px;
+}
+
+.new-table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.new-table th,
+.new-table td {
+  padding: 12px 15px;
+}
+
+.new-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.new-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.new-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+.new-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
+.container h2{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.config-container {
+  display: inline-flex;
+  width: 100%;
+  text-align: center;
+  
+}
+
+.config-container div {
+  border-radius: 5px;
+  width: 700px;
+  border: 2px solid black;
+  height: 250px;
+  margin: 2.9rem ;
+  background-color: white;
+
+}
+
+.config-container h3 {
+  font-size: 30px;
+  color: white;
+  background-color: #009879;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 0 auto;
+  border-bottom: 2px solid black;
+  margin-bottom: 3.5rem;
+}
+
+.config-container div input {
+  margin-top: 6em;
+  margin-bottom: 7em;
+  margin: 1rem;
+}
+
+.config-container div button {
+  color: white;
+  background-color: #009879;
+  padding: 12px 55px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.measurebttn {
+  color: white;
+  background-color: #009879;
+  border: #009879;
+  padding: 12px 55px;
+  border-radius: 5px;
+  margin-bottom:2rem;
+  margin-top:1rem;
+  text-decoration: none;
+}
+
+.measurebttn:hover{
+  background-color: #62c7b3;
+  transition: ease .25s;
+  color: white;
+}
+
+.measurebttn:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.config-container div button:hover {
+  background-color: #62c7b3;
+  transition: ease .25s;
+  color: white;
+}
+
+.centerstart{
+  justify-content: center;
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+
+.pbase {
+  font-size: large;
+  color: grey;
+  margin-left: 3.5rem;
+}
+
+.resetb{
+  font-size: larger;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: rgb(128, 25, 25);
+  color: white;
+  border: black;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.resetb:hover{
+  background-color: rgb(170, 67, 67);
+  transition: ease .25s;
+  color: white;
+}
+
+.resetb:active{
+  background-color: rgb(207, 87, 87);
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+@media only screen and (max-width: 500px) {
+  .wrapper {
+    display: grid; 
+    width: auto;
+  }
+
+  .cardkpi{
+    width: auto;
+
+  }
+  .left {
+    width: auto;
+  }
+  .box {
+    display: grid
+  }
+
+  .button{
+    display: grid;
+    width: 92.5%; 
+  }
+
+  .container{
+    width: auto;
+  }
+ 
+  .config-container{
+    width: auto;
+    height: auto;
+    display: grid;
+    margin-right: 0.2rem;
+  }
+  .config-container div{
+    height: auto;
+    width: auto;
+    margin-left:2rem ;
+  }
+   
+  .config-container div button {
+    width: auto;
+    margin-left: 0.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .config-container div input {
+    margin: 1.7rem;
+    width: auto;
+  }
+  
+  .config-container h3{
+    width: auto;
+  }
+
+  .centerstart{
+    margin-top: 1rem;
+    margin-left: 0.4rem;
+    width: auto;
+    height: auto;
+  }
+
+  .pbase {
+    font-size: larger;
+    padding: 0.5rem;
+    margin-left: 1.2rem;
+    color: grey;
+  }
+}
