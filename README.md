@@ -53,3 +53,6 @@ The code in aquarinator/implentation is just excecutable on a Raspberry Pi. Ther
 
 **Connect your own Firebase RT Database**
 - To conect your own Fireabse Real Time Database just change the config variable in the top of the app.py file to the information of your database. The tables and entrys will be created automatically.
+
+## One Pager
+<img width="715" alt="Bildschirmfoto 2022-02-27 um 02 12 30" src="https://user-images.githubusercontent.com/61969721/155874381-ede79ec7-8098-4b1a-b30d-0b60a34fc034.png">
